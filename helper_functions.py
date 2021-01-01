@@ -70,8 +70,8 @@ def get_subset_playlists(spotify, user_id, offsetcount, limit):
     offset = offsetcount*limit
     return spotify.playlists(user_id, limit=limit, offset=offset).items
 
-    def get_playlists(spotify, user_id):
-        total_playlists = spotify.playlists(user_id).total
+def get_playlists(spotify, user_id):
+    total_playlists = spotify.playlists(user_id).total
     print("{} has {} playlists in total".format(user_id, total_playlists))
     num_subsets = get_num_subsets(total_playlists, limit=50) # Max number of items per call is 50
     playlists = {}
@@ -89,8 +89,8 @@ def playlist_info_to_lists(playlists):
     playlist_names = []
     playlist_images = []
     playlist_descriptions = []
-    for index in range(len(data)):
-        simple_playlist_paging = data[index]
+    for index in range(len(playlists)):
+        simple_playlist_paging = playlists[index]
         for playlist in simple_playlist_paging:
             playlist_ids.append(playlist.id)
             playlist_names.append(playlist.name)
